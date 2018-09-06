@@ -6,9 +6,11 @@
 \usepackage{graphicx}
 \usepackage[colorinlistoftodos]{todonotes}
 
-\title{Quantum Hall effect report template 5LIL0}
+\title{Intelligent Architectures - FaceNetworks}
 
-\author{Your names and group number}
+\author{Erik Wouters \\
+13..... \\
+Course code: 5LIL0}
 
 \date{\today}
 
@@ -17,28 +19,57 @@
 
 \begin{abstract}
 Enter a short summary here. What topic do you want to investigate and why? What experiment did you perform? What were your main results and conclusion?
+
+
+\begin{enumerate}
+    \item Introduction
+    \item Part I: Feedforward (bottom-up) Flow of     Information from Inputs to Categories
+    \begin{enumerate}
+        \item The Network and Face Inputs
+        \item Testing the Network
+        \item Using Cluster Plots to Understand the Categorization Process
+    \end{enumerate}
+    \item Part II: Bidirectional (Top-Down and Bottom-Up)     Processing
+    \begin{enumerate}
+        \item Top-Down Imagery
+        \item Interactive Top-Down and Bottom-Up and Partial     Faces
+    \end{enumerate}
+\end{enumerate}
+
 \end{abstract}
 
 \section{Introduction 5 lines to max 1/2 page}
 \label{sec:introduction}
 
-Explain the context of the experiment here. Why is condensed matter physics interesting or important?
-Optional things you could talk about (but don't have to -- this is up to you): transistors, computers, Quantum computers, fundamental knowledge (e.g. the resistance quantum).
+%Explain the context of the experiment here. Why is condensed matter physics interesting or important?
+%Optional things you could talk about (but don't have to -- this is up to you): transistors, computers, Quantum computers, fundamental knowledge (e.g. the resistance quantum).
 
-Briefly explain what methods you will use in the experiment, and what values you will extract from the data.
+%Briefly explain what methods you will use in the experiment, and what values you will extract from the data.
 
-For this section and all following sections: If you refer to an equation, previous result or theory that is not regarded as common knowledge, then cite the source (article or book) where you found this. For example, you can cite the Nano 3 Lecture notes \cite{nano3}.
+%For this section and all following sections: If you refer to an equation, previous result or theory that is not regarded as common knowledge, then cite the source (article or book) where you found this. For example, you can cite the Nano 3 Lecture notes \cite{nano3}.
+
+In this project the categorization of simple cartoon faces is explored. The faces are categorized based on different features. First, in section \ref{sec:feedforward} a feedforward (bottom-up) approach is used to investigate the flow of information from (image) inputs to categories. In section \ref{sec:bidirectional} bidirectional (top-down and bottom-up) processing is explored to iteratively clean up images that are partially blocked.
+%If you are following along with the text, then first do Part I in the section on Categorization, and then come back for Part II after reading about Bidirectional Excitatory Dynamics and Attractors.
+
+\section{Feedforward}
+\label{sec:feedforward}
+
+\subsection{The Network and Face Inputs}
+The inputs to the network are $16x16$ black and white images. These are classified over three different features: \textit{Emotion}, \textit{Gender} and \textit{Identity}.
+The Emotion feature has units \textit{Happy} and \textit{Sad}, corresponding to those emotions. The Gender feature has units \textit{Male} and \textit{Female} corresponding to the two most common genders. Finally the identity feature has the units
 
 
 
-This project explores how sensory inputs (in this case simple cartoon faces) can be categorized in multiple different ways, to extract the relevant information and collapse across the irrelevant. It allows you to explore both bottom-up processing from face image to categories, and top-down processing from category values to face images (imagery), including the ability to dynamically iterate both bottom-up and top-down to cleanup partial inputs (partially occluded face images).
-If you are following along with the text, then first do Part I in the section on Categorization, and then come back for Part II after reading about Bidirectional Excitatory Dynamics and Attractors.
+The \textit{Happy} faces have the corners of their mouth angled up into a smile whereas the \textit{Sad} faces have the corners of their mouth angled down.
 
-\section{Theory 2-3 pages}
-\label{sec:theory}
 
-\subsection{Two-dimensional Electron Gas}
-Here, explain the concept of a 2-DEG in GaAs/AlGaAs. What is a 2-DEG and why does it arise?
+Let's first examine the network, shown in the Network tab in the right 3D panel. It has a 16x16 Input layer for the face images, and three different categorization output layers:
+Emotion with "Happy" and "Sad" units, categorizes the emotion represented in the face into these two different categories.
+Gender with "Female" and "Male" units, categorizes the face according to these two gender categories.
+Identity with 6 labeled units with the names given to the different faces in the input (Alberto, Betty, Lisa, Mark, Wendy, Zane) -- the network can categorize the individual despite differences in emotional expression. Four additional units are available if you want to explore further by adding new faces.
+⇒ Select the r.wt variable to view in the network view, and click on each of the different output category neurons in the network. This will display the weight values going into each neuron. 
+These weights were learned in a way that makes their representations particularly obvious by looking at these weights, so you can hopefully see sensible-looking patterns for each unit. To further understand how this network works, we can look at the input face patterns and corresponding categorization values that it was trained on (we'll explain this learning process in the Learning Chapter).
+⇒ Select the Faces tab in the right panel -- look at the patterns shown in the left portion of the display -- these are the names, faces, and emotional expresions that the network was trained on. 
 
 \subsection{Hall Effect}
 Explain the classical Hall effect in your own words. What do I measure at $B=0$? And what happens if $B>0$? Which effect gives rise to the voltage drop in the vertical direction?
